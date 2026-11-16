@@ -6,6 +6,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-paper: #F3EFE6;
+  --color-ink: #111111;
+  --color-cobalt: #2338FF;
+  --color-tangerine: #FF6B1A;
+
+  --font-display: "Anton", sans-serif;
+  --font-serif: "Instrument Serif", serif;
+  --font-mono: "DM Mono", monospace;
+  --font-sans: "DM Sans", sans-serif;
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -81,6 +93,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+   --background: #F3EFE6;
+  --foreground: #111111;
+  --primary: #2338FF;
+  --primary-foreground: #F3EFE6;
+  --accent: #FF6B1A;
+  --accent-foreground: #111111;
+  --ring: #2338FF;
+  --border: #111111;
+  --radius: 0rem;
 }
 
 .dark {
