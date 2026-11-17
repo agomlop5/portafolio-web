@@ -33,5 +33,6 @@ export const router = createRouter({
       name: 'Contacto',
       component: ContactView
     },
+    
   ]
 })
