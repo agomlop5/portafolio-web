@@ -6,7 +6,7 @@ import AppContainer from '@/components/layout/AppContainer.vue'
 
 const abierto = ref(false)
 const enlaces = [
-  { nombre: 'Trabajo', ruta: '/trabajo' },
+  { nombre: 'Proyectos', ruta: '/proyectos' },
   { nombre: 'Sobre mí', ruta: '/sobre-mi' },
   { nombre: 'Contacto', ruta: '/contacto' },
 ]
@@ -15,7 +15,7 @@ const enlaces = [
 <template>
   <header class="sticky top-0 z-50 border-b border-ink bg-paper/90 backdrop-blur">
     <AppContainer class="flex items-center justify-between py-3">
-      <RouterLink to="/" class="font-display text-2xl uppercase tracking-wide 2xl:text-3xl">
+      <RouterLink to="/" class="font-display text-[clamp(1.5rem,2.2vw,2.75rem)] uppercase tracking-wide">
         Alba Gómez
       </RouterLink>
 
@@ -24,7 +24,7 @@ const enlaces = [
           v-for="e in enlaces"
           :key="e.ruta"
           :to="e.ruta"
-          class="font-mono text-sm uppercase tracking-wider hover:text-cobalt focus-visible:outline-2 focus-visible:outline-cobalt 2xl:text-base"
+          class="font-mono text-[clamp(0.875rem,1vw,1.125rem)] uppercase tracking-wider hover:text-cobalt"
           active-class="text-cobalt underline underline-offset-4"
         >
           {{ e.nombre }}

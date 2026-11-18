@@ -12,7 +12,7 @@ const anio = new Date().getFullYear()
 
 const navegacion = [
   { nombre: 'Inicio', ruta: '/' },
-  { nombre: 'Trabajo', ruta: '/trabajo' },
+  { nombre: 'Proyectos', ruta: '/proyectos' },
   { nombre: 'Sobre mí', ruta: '/sobre-mi' },
   { nombre: 'Contacto', ruta: '/contacto' },
 ]

@@ -20,8 +20,8 @@ export const router = createRouter({
       redirect: '/'
     },
     {
-      path: '/trabajo',
-      name: 'Trabajo',
+      path: '/proyectos',
+      name: 'Proyectos',
       component: WorkIndexView
     },
     {

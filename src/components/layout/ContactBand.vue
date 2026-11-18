@@ -13,7 +13,7 @@ const { copiado, copiar } = useCopyToClipboard()
     <AppContainer class="flex flex-col gap-4 py-6 md:flex-row md:items-center md:justify-between md:py-8">
       <h2
         id="contacto-titulo"
-        class="font-display text-2xl uppercase leading-none md:text-3xl"
+        class="font-display text-[clamp(2rem,3.5vw,4.5rem)] uppercase leading-none"
       >
         ¿Trabajamos  
         <span class="font-serif normal-case italic text-cobalt">  juntos?</span>
@@ -22,7 +22,7 @@ const { copiado, copiar } = useCopyToClipboard()
       <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
         <button
           type="button"
-          class="inline-flex items-center gap-2 font-mono text-s hover:text-cobalt focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cobalt"
+          class="inline-flex items-center gap-2 font-mono text-[clamp(0.875rem,1.1vw,1.25rem)] hover:text-cobalt focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cobalt"
           @click="copiar(contacto.email)"
         >
           {{ copiado ? '¡Copiado!' : contacto.email }}

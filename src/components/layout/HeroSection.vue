@@ -13,17 +13,17 @@ import AppContainer from '@/components/layout/AppContainer.vue'
         <span> · Estudiante de Bellas Artes (UPV) · València</span>
       </div>
 
-      <h1 class="relative z-10 font-display uppercase leading-[1.14] text-ink text-[clamp(4.5rem,19vw,16rem)]">
+      <h1 class="relative z-10 font-display uppercase leading-[1.14] text-ink text-[clamp(3.25rem,15vw,24rem)]">
         Alba<br />Gómez
       </h1>
 
-      <p class="relative z-10 mt-4 font-serif italic leading-tight text-[clamp(1.75rem,4.5vw,4.5rem)]">
+      <p class="relative z-10 mt-4 font-serif italic leading-tight text-[clamp(1.35rem,4.5vw,7rem)]">
         Diseño gráfico, <span class="text-cobalt">ilustración</span> <span class="text-tangerine-deep">y web.</span>
       </p>
 
       <div class="relative z-30 mt-8 flex flex-wrap gap-[clamp(0.75rem,1.2vw,1.5rem)] pb-10 md:mt-12 md:pb-16">
         <Button as-child size="lg" class="h-auto rounded-none bg-cobalt px-[clamp(1.25rem,1.8vw,2.25rem)] py-[clamp(0.75rem,1vw,1.15rem)] font-mono uppercase text-paper text-[clamp(0.85rem,1.1vw,1.15rem)] hover:bg-ink">
-          <RouterLink to="/trabajo">
+          <RouterLink to="/proyectos">
             Ver proyectos <ArrowRight class="ml-2 h-4 w-4" />
           </RouterLink>
         </Button>
@@ -37,8 +37,7 @@ import AppContainer from '@/components/layout/AppContainer.vue'
         alt="Ilustración en blanco y negro de una mujer de perfil con un pendiente de perla"
         width="949"
         height="1180"
-        class="pointer-events-none absolute bottom-0 right-0 z-20 w-1/2 max-w-[620px] md:w-[38%]"
-      />
+        class="pointer-events-none absolute bottom-0 right-0 z-20 w-[50%] max-w-[850px] md:w-[38%]"      />
     </AppContainer>
   </section>
 </template>
