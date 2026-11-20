@@ -15,10 +15,10 @@ const delaRama = computed(() => proyectos.filter((p) => p.categoria === props.ca
 <template>
   <AppContainer class="min-h-[60svh] py-10 md:py-16">
     <RouterLink
-      to="/trabajo"
+      to="/proyectos"
       class="mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest hover:text-cobalt"
     >
-      <ArrowLeft class="h-4 w-4" aria-hidden="true" /> Volver a trabajo
+      <ArrowLeft class="h-4 w-4" aria-hidden="true" /> Volver a proyectos
     </RouterLink>
 
     <template v-if="rama">

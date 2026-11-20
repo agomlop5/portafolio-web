@@ -4,7 +4,6 @@ import { RouterLink } from 'vue-router'
 import { ArrowUpRight } from 'lucide-vue-next'
 import AppContainer from '@/components/layout/AppContainer.vue'
 import { useCategorias } from '@/composables/useCategorias'
-import { proyectos } from '@/data/projects'
 
 const { categoriasConProyectos } = useCategorias()
 const imagenesRotas = reactive<Record<string, boolean>>({})
@@ -18,7 +17,7 @@ function pad(n: number) {
   <AppContainer class="py-10 md:py-16">
     <header class="mb-10 md:mb-16">
       <p class="mb-4 font-mono text-xs uppercase tracking-widest md:text-sm">
-        Proyectos seleccionados · {{ proyectos.length }} categorías
+        Proyectos seleccionados · {{ categoriasConProyectos.length }} categorías
       </p>
       <h1 class="font-display uppercase leading-[1.1] text-[clamp(3.5rem,13vw,12rem)]">
         Proyectos
@@ -35,7 +34,7 @@ function pad(n: number) {
     <ul v-else class="grid gap-6 md:grid-cols-2 md:gap-8">
       <li v-for="(c, i) in categoriasConProyectos" :key="c.slug">
         <RouterLink
-          :to="`/trabajo/${c.slug}`"
+          :to="`/proyectos/${c.slug}`"
           class="group block border border-ink transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cobalt"
           :class="i % 2 === 0 ? 'hover:bg-cobalt hover:text-paper' : 'hover:bg-tangerine hover:text-ink'"
         >
