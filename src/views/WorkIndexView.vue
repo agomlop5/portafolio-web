@@ -14,15 +14,15 @@ function pad(n: number) {
 </script>
 
 <template>
-  <AppContainer class="py-10 md:py-16">
-    <header class="mb-10 md:mb-16">
-      <p class="mb-4 font-mono text-xs uppercase tracking-widest md:text-sm">
+  <AppContainer class="py-8 md:py-12">
+    <header class="mb-8 md:mb-12">
+      <p class="mb-3 font-mono text-xs uppercase tracking-widest md:text-sm">
         Proyectos seleccionados · {{ categoriasConProyectos.length }} categorías
       </p>
       <h1 class="font-display uppercase leading-[1.1] text-[clamp(3.5rem,13vw,12rem)]">
         Proyectos
       </h1>
-      <p class="mt-4 max-w-2xl font-serif text-xl italic md:text-3xl">
+      <p class="mt-3 max-w-2xl font-serif text-xl italic md:text-3xl">
         Elige una rama y entra a ver los proyectos.
       </p>
     </header>
@@ -31,7 +31,7 @@ function pad(n: number) {
       Todavía no hay proyectos.
     </p>
 
-    <ul v-else class="grid gap-6 md:grid-cols-2 md:gap-8">
+    <ul v-else class="grid gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
       <li v-for="(c, i) in categoriasConProyectos" :key="c.slug">
         <RouterLink
           :to="`/proyectos/${c.slug}`"
@@ -60,7 +60,7 @@ function pad(n: number) {
 
           <div class="flex items-end justify-between gap-4 p-4 md:p-6">
             <div>
-              <h2 class="font-display text-3xl uppercase leading-none md:text-5xl">
+              <h2 class="font-display text-3xl uppercase leading-[1.15] md:text-5xl">
                 {{ c.nombre }}
               </h2>
               <p class="mt-3 max-w-md font-mono text-xs uppercase tracking-wider opacity-80 md:text-sm">

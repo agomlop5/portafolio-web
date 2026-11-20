@@ -6,8 +6,8 @@ import AppContainer from '@/components/layout/AppContainer.vue'
 </script>
 
 <template>
-  <AppContainer class="min-h-[60svh] py-16 md:py-24">
-    <p class="font-mono text-sm uppercase tracking-widest">Error 404</p>
+  <AppContainer class="min-h-[60svh] py-16 md:py-24 leading-45">
+    <p class="font-mono text-[50px] uppercase tracking-widest">Error 404</p>
     <h1 class="mt-4 font-display uppercase leading-none text-[clamp(4rem,16vw,14rem)]">
       Página <span class="font-serif normal-case italic text-cobalt">no encontrada</span>
     </h1>
