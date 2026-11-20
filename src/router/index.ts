@@ -1,8 +1,10 @@
 import Home from "@/pages/home/Home.vue";
 import AboutView from "@/views/AboutView.vue";
+import CategoryView from "@/views/CategoryView.vue";
 import ContactView from "@/views/ContactView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import WorkIndexView from "@/views/WorkIndexView.vue";
+import WorkLayout from "@/views/WorkLayout.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 
 
@@ -21,8 +23,20 @@ export const router = createRouter({
     },
     {
       path: '/proyectos',
-      name: 'Proyectos',
-      component: WorkIndexView
+      component: WorkLayout,
+      children: [
+        {
+          path: '',
+          name: 'Proyectos',
+          component: WorkIndexView,
+        },
+        {
+          path: ':categoria',
+          name: 'Categoria',
+          component: CategoryView,
+          props: true,
+        },
+      ],
     },
     {
       path: '/sobre-mi',
