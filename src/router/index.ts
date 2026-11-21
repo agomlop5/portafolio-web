@@ -3,9 +3,11 @@ import AboutView from '@/views/AboutView.vue'
 import CategoryView from '@/views/CategoryView.vue'
 import ContactView from '@/views/ContactView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import ProjectView from '@/views/ProjectView.vue'
 import WorkIndexView from '@/views/WorkIndexView.vue'
 import WorkLayout from '@/views/WorkLayout.vue'
 import { categorias } from '@/data/categories'
+import { proyectos } from '@/data/projects'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 export const router = createRouter({
@@ -33,6 +35,25 @@ export const router = createRouter({
           props: true,
           beforeEnter: (to) => {
             const existe = categorias.some((c) => c.slug === to.params.categoria)
+            if (!existe) {
+              return {
+                name: '404',
+                params: { pathMatch: to.path.substring(1).split('/') },
+                query: to.query,
+                hash: to.hash,
+              }
+            }
+          },
+        },
+        {
+          path: ':categoria/:slug',
+          name: 'Proyecto',
+          component: ProjectView,
+          props: true,
+          beforeEnter: (to) => {
+            const existe = proyectos.some(
+              (p) => p.slug === to.params.slug && p.categoria === to.params.categoria,
+            )
             if (!existe) {
               return {
                 name: '404',

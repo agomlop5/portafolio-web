@@ -19,10 +19,10 @@ function pad(n: number) {
       <p class="mb-3 font-mono text-xs uppercase tracking-widest md:text-sm">
         Proyectos seleccionados · {{ categoriasConProyectos.length }} categorías
       </p>
-      <h1 class="font-display uppercase leading-[1.1] text-[clamp(3.5rem,13vw,12rem)]">
+      <h1 class="font-display uppercase leading-[1.1] text-[clamp(3rem,9vw,8rem)]">
         Proyectos
       </h1>
-      <p class="mt-3 max-w-2xl font-serif text-xl italic md:text-3xl">
+      <p class="mt-3 max-w-2xl font-serif text-lg italic md:text-2xl">
         Elige una rama y entra a ver los proyectos.
       </p>
     </header>
@@ -31,11 +31,11 @@ function pad(n: number) {
       Todavía no hay proyectos.
     </p>
 
-    <ul v-else class="grid gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
+    <ul v-else class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       <li v-for="(c, i) in categoriasConProyectos" :key="c.slug">
         <RouterLink
           :to="`/proyectos/${c.slug}`"
-          class="group block border border-ink transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cobalt"
+          class="group block h-full border border-ink transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cobalt"
           :class="i % 2 === 0 ? 'hover:bg-cobalt hover:text-paper' : 'hover:bg-tangerine hover:text-ink'"
         >
           <div class="relative aspect-[4/3] overflow-hidden border-b border-ink bg-ink/10">
@@ -49,7 +49,7 @@ function pad(n: number) {
             />
             <div
               v-else
-              class="flex h-full w-full items-center justify-center font-display text-[8rem] leading-none text-ink/20"
+              class="flex h-full w-full items-center justify-center font-display text-[6rem] leading-none text-ink/20"
             >
               {{ pad(i + 1) }}
             </div>
@@ -58,22 +58,22 @@ function pad(n: number) {
             </span>
           </div>
 
-          <div class="flex items-end justify-between gap-4 p-4 md:p-6">
+          <div class="flex items-end justify-between gap-4 p-4">
             <div>
-              <h2 class="font-display text-3xl uppercase leading-[1.15] md:text-5xl">
+              <h2 class="font-display text-2xl uppercase leading-none md:text-3xl">
                 {{ c.nombre }}
               </h2>
-              <p class="mt-3 max-w-md font-mono text-xs uppercase tracking-wider opacity-80 md:text-sm">
+              <p class="mt-2 max-w-md font-mono text-xs uppercase tracking-wider opacity-80">
                 {{ c.descripcion }}
               </p>
             </div>
 
-            <div class="flex shrink-0 flex-col items-end gap-2">
-              <span class="font-serif text-2xl italic md:text-3xl">
+            <div class="flex shrink-0 flex-col items-end gap-1">
+              <span class="font-serif text-xl italic md:text-2xl">
                 ({{ pad(c.total) }})<span class="sr-only"> proyectos</span>
               </span>
               <ArrowUpRight
-                class="h-6 w-6 md:h-8 md:w-8 motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:-translate-y-1 motion-safe:group-hover:translate-x-1"
+                class="h-5 w-5 md:h-6 md:w-6 motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:-translate-y-1 motion-safe:group-hover:translate-x-1"
                 aria-hidden="true"
               />
             </div>
