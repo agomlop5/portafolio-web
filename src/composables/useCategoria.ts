@@ -17,13 +17,19 @@ export function useCategoria(slug: MaybeRefOrGetter<string>) {
       ),
   )
 
-  const siguiente = computed(() => {
-    const lista = categoriasConProyectos.value
-    if (lista.length < 2) return null
-    const i = lista.findIndex((c) => c.slug === toValue(slug))
-    if (i === -1) return null
-    return lista[(i + 1) % lista.length]
-  })
+  // Posición de esta rama dentro de las ramas que tienen proyectos
+  const posicion = computed(() =>
+    categoriasConProyectos.value.findIndex((c) => c.slug === toValue(slug)),
+  )
 
-  return { rama, delaRama, siguiente }
+  const vecina = (desplazamiento: number) => {
+    const lista = categoriasConProyectos.value
+    if (lista.length < 2 || posicion.value === -1) return null
+    return lista[(posicion.value + desplazamiento + lista.length) % lista.length]
+  }
+
+  const anterior = computed(() => vecina(-1))
+  const siguiente = computed(() => vecina(1))
+
+  return { rama, delaRama, anterior, siguiente }
 }
