@@ -17,11 +17,9 @@ export const detalleJardiBotanic: Detalle = {
     'La propuesta combina Futura Condensed Medium, que aporta una verticalidad geométrica, con Futura Regular para la lectura, y una paleta de verdes y tonos tierra extraída del propio entorno del jardín. El resultado es un sistema versátil que va de la papelería institucional al merchandising sostenible.',
   ],
   datos: [
-    {
-      clave: 'Entregables',
-      valor: 'Manual de identidad visual, papelería, señalética y merchandising',
-    },
-  ],
+  { clave: 'Equipo', valor: 'Alba Gómez y Lucía Alemany, Sandra Villora y Paula Alcayde' },
+  { clave: 'Entregables', valor: 'Manual de identidad visual, papelería, señalética y merchandising' },
+],
   secciones: [
     {
       titulo: 'Concepto',

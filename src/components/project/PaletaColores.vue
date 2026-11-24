@@ -26,7 +26,10 @@ function copiarHex(hex: string) {
   <div class="mt-6 space-y-8">
     <div v-for="g in grupos" :key="g.titulo">
       <p class="mb-3 font-mono text-xs uppercase tracking-widest">{{ g.titulo }}</p>
-      <ul class="grid grid-cols-3 gap-3 md:gap-4">
+      <ul
+        class="grid gap-3 md:gap-4"
+        :class="g.colores.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-3'"
+      >
         <li v-for="c in g.colores" :key="c.hex">
           <button
             type="button"
@@ -58,7 +61,9 @@ function copiarHex(hex: string) {
               {{ c.nombre }}
             </span>
             <span class="mt-1 block font-mono text-[0.7rem] uppercase leading-relaxed text-ink/70 md:text-xs">
-              {{ c.hex }}<br />{{ c.rgb }}<br />{{ c.cmyk }}
+              {{ c.hex }}
+              <template v-if="c.rgb"><br />{{ c.rgb }}</template>
+              <template v-if="c.cmyk"><br />{{ c.cmyk }}</template>
             </span>
           </button>
         </li>

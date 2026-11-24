@@ -1,5 +1,6 @@
 import type { CategoriaSlug } from './categories'
 import { detalleJardiBotanic } from './detalles/jardi-botanic'
+import { detalleSampler } from './detalles/sampler'
 
 export interface Figura {
   src: string
@@ -12,8 +13,8 @@ export interface Figura {
 export interface ColorMarca {
   nombre: string
   hex: string
-  rgb: string
-  cmyk: string
+  rgb?: string
+  cmyk?: string
   rol: 'principal' | 'secundario'
 }
 
@@ -72,19 +73,18 @@ export const proyectos: Proyecto[] = [
     anio: 2025,
     categoria: 'identidad-visual',
     tambien: ['carteleria'],
-    contexto: 'Festival de artes sonoras',
-    formato: 'Cartelería vertical 50x70 cm, banderolas de calle y banners web',
-    herramientas: ['Illustrator', 'Photoshop'],
+    contexto: 'Festival de artes sonoras expandidas · Matadero Madrid',
+    formato:
+      'Cartel 50x70 cm, banderolas de 64x50 y 360x60 cm, folleto de 21x37,5 cm desplegado, banner web, pulseras y merchandising',
+    herramientas: ['Affinity'], // revisa
     portada: '/img/proyectos/sampler/cover.webp',
-    imagenes: [
-      '/img/proyectos/sampler/01.webp',
-      '/img/proyectos/sampler/02.webp',
-    ],
+    imagenes: [],
     frase:
       'Identidad y campaña para un festival de artes sonoras, donde el sonido se convierte en forma.',
     resumen:
       'Campaña para un festival que cruza sonido, tecnología y performance. El concepto "el sonido como forma" se traduce en mallas y ondas fluidas, con azules y morados y tipografía Poppins.',
     destacado: true,
+    detalle: detalleSampler,
   },
   {
     slug: 'althisar',

@@ -19,7 +19,6 @@ const { rama, delaRama } = useCategoria(() => props.categoria)
 const detalle = computed(() => proyecto.value?.detalle)
 const secciones = computed(() => detalle.value?.secciones ?? [])
 
-// Todas las imágenes del proyecto, en orden, para la galería
 const todas = computed<Figura[]>(() => secciones.value.flatMap((s) => (s.filas ?? []).flat()))
 const indicePorSrc = computed(() => new Map(todas.value.map((f, i) => [f.src, i])))
 const { indice, abrir, cerrar, siguiente, anterior } = useLightbox(() => todas.value.length)
@@ -48,10 +47,9 @@ function pad(n: number) {
   return String(n).padStart(2, '0')
 }
 
-// Si una fila tiene una sola imagen, limitamos su altura máxima a unos 640 px
 function estiloFila(fila: Figura[]) {
-  if (fila.length !== 1) return undefined
-  return { maxWidth: `${Math.round((fila[0].ancho / fila[0].alto) * 640)}px` }
+  const suma = fila.reduce((total, f) => total + f.ancho / f.alto, 0)
+  return { maxWidth: `${Math.round(suma * 720)}px` }
 }
 </script>
 
