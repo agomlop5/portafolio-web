@@ -1,4 +1,35 @@
 import type { CategoriaSlug } from './categories'
+import { detalleJardiBotanic } from './detalles/jardi-botanic'
+
+export interface Figura {
+  src: string
+  alt: string
+  pie?: string
+  ancho: number
+  alto: number
+}
+
+export interface ColorMarca {
+  nombre: string
+  hex: string
+  rgb: string
+  cmyk: string
+  rol: 'principal' | 'secundario'
+}
+
+export interface Seccion {
+  titulo: string
+  texto?: string[]
+  colores?: ColorMarca[]
+  filas?: Figura[][]
+}
+
+export interface Detalle {
+  descripcion: string[]
+  datos?: { clave: string; valor: string }[]
+  descarga?: { texto: string; url: string }
+  secciones: Seccion[]
+}
 
 export interface Proyecto {
   slug: string
@@ -14,6 +45,7 @@ export interface Proyecto {
   frase: string
   resumen: string
   destacado?: boolean
+  detalle?: Detalle
 }
 
 export const proyectos: Proyecto[] = [
@@ -22,19 +54,17 @@ export const proyectos: Proyecto[] = [
     titulo: 'Identidad visual Jardí Botànic',
     anio: 2025,
     categoria: 'identidad-visual',
-    contexto: 'Jardí Botànic UV',
+    contexto: 'Jardí Botànic · Universitat de València',
     formato: 'Manual de identidad A4, papelería 85x55 mm y señalética de gran formato',
     herramientas: ['Illustrator', 'Photoshop', 'InDesign'],
     portada: '/img/proyectos/jardi-botanic/cover.webp',
-    imagenes: [
-      '/img/proyectos/jardi-botanic/01.webp',
-      '/img/proyectos/jardi-botanic/02.webp',
-    ],
+    imagenes: [],
     frase:
       'Rediseño de la identidad del jardín botánico de la UV, con un símbolo nacido de su entrada principal.',
     resumen:
       'Rediseño de la identidad del Jardí Botànic de la UV a partir de un símbolo de círculos inspirado en la entrada principal del jardín. Tipografía Futura y paleta de tonos tierra y verdes.',
     destacado: true,
+    detalle: detalleJardiBotanic,
   },
   {
     slug: 'sampler',
