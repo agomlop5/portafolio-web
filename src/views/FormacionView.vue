@@ -8,8 +8,8 @@ function pad(n: number) {
   return String(n).padStart(2, '0')
 }
 
-function ects(n: number) {
-  return String(n).replace('.', ',')
+function ects(n: number | undefined) {
+  return n === undefined ? '—' : String(n).replace('.', ',')
 }
 </script>
 

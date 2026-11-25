@@ -41,7 +41,7 @@ function ects(n: number) {
     <header class="mb-10 grid gap-6 border-b border-ink pb-10 md:mb-14 md:pb-14 lg:grid-cols-12 lg:items-end lg:gap-12">
       <div class="lg:col-span-7">
         <p class="font-mono text-xs uppercase tracking-widest">
-          {{ datos.periodo }} · {{ ects(datos.ects) }} ECTS
+          {{ datos.periodo }}<template v-if="datos.ects != null"> · {{ ects(datos.ects) }} ECTS</template>
         </p>
         <h1 class="mt-3 font-display uppercase leading-[1.05] text-[clamp(2.5rem,7vw,7rem)]">
           {{ datos.nombre }}
