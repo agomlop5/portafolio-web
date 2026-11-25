@@ -1,12 +1,15 @@
 import Home from '@/pages/home/Home.vue'
+import AboutLayout from '@/views/AboutLayout.vue'
 import AboutView from '@/views/AboutView.vue'
 import CategoryView from '@/views/CategoryView.vue'
 import ContactView from '@/views/ContactView.vue'
+import FormacionView from '@/views/FormacionView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import ProjectView from '@/views/ProjectView.vue'
 import WorkIndexView from '@/views/WorkIndexView.vue'
 import WorkLayout from '@/views/WorkLayout.vue'
 import { categorias } from '@/data/categories'
+import { asignaturas } from '@/data/formacion'
 import { proyectos } from '@/data/projects'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
@@ -68,8 +71,36 @@ export const router = createRouter({
     },
     {
       path: '/sobre-mi',
-      name: 'Sobre mí',
-      component: AboutView,
+      component: AboutLayout,
+      children: [
+        {
+          path: '',
+          name: 'Sobre mí',
+          component: AboutView,
+        },
+        {
+          path: 'formacion',
+          name: 'Formacion',
+          component: FormacionView,
+        },
+        {
+          path: 'formacion/:asignatura',
+          name: 'Asignatura',
+          component: FormacionView,
+          props: true,
+          beforeEnter: (to) => {
+            const existe = asignaturas.some((a) => a.slug === to.params.asignatura)
+            if (!existe) {
+              return {
+                name: '404',
+                params: { pathMatch: to.path.substring(1).split('/') },
+                query: to.query,
+                hash: to.hash,
+              }
+            }
+          },
+        },
+      ],
     },
     {
       path: '/contacto',
