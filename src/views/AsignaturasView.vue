@@ -1,17 +1,55 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { computed, nextTick, reactive, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { ArrowLeft, ArrowRight } from 'lucide-vue-next'
 import AppContainer from '@/components/layout/AppContainer.vue'
 import { useAsignatura } from '@/composables/useAsignatura'
+
+type Pestana = 'aprendido' | 'objetivos'
 
 const props = defineProps<{ asignatura: string }>()
 
 const { asignatura: datos, trabajos, anterior, siguiente } = useAsignatura(() => props.asignatura)
 const imagenesRotas = reactive<Record<string, boolean>>({})
 
+function pad(n: number) {
+  return String(n).padStart(2, '0')
+}
+
 function ects(n: number) {
   return String(n).replace('.', ',')
+}
+
+// Pestañas: solo las que tienen contenido
+const pestanas = computed(() => {
+  const lista: { id: Pestana; texto: string; items: string[] }[] = []
+  if (datos.value?.aprendido?.length) {
+    lista.push({ id: 'aprendido', texto: 'Lo que he aprendido', items: datos.value.aprendido })
+  }
+  if (datos.value?.objetivos?.length) {
+    lista.push({ id: 'objetivos', texto: 'Objetivos de la asignatura', items: datos.value.objetivos })
+  }
+  return lista
+})
+
+const pestanaActiva = ref<Pestana>('aprendido')
+
+watch(
+  () => props.asignatura,
+  () => {
+    pestanaActiva.value = pestanas.value[0]?.id ?? 'aprendido'
+  },
+  { immediate: true },
+)
+
+async function moverPestana(desplazamiento: number) {
+  const lista = pestanas.value
+  if (lista.length < 2) return
+  const i = lista.findIndex((p) => p.id === pestanaActiva.value)
+  const nueva = lista[(i + desplazamiento + lista.length) % lista.length]
+  pestanaActiva.value = nueva.id
+  await nextTick()
+  document.getElementById(`tab-${nueva.id}`)?.focus()
 }
 </script>
 
@@ -41,7 +79,8 @@ function ects(n: number) {
     <header class="mb-10 grid gap-6 border-b border-ink pb-10 md:mb-14 md:pb-14 lg:grid-cols-12 lg:items-end lg:gap-12">
       <div class="lg:col-span-7">
         <p class="font-mono text-xs uppercase tracking-widest">
-          {{ datos.periodo }}<template v-if="datos.ects != null"> · {{ ects(datos.ects) }} ECTS</template>
+          {{ datos.periodo }}
+          <template v-if="datos.ects !== undefined"> · {{ ects(datos.ects) }} ECTS</template>
         </p>
         <h1 class="mt-3 font-display uppercase leading-[1.05] text-[clamp(2.5rem,7vw,7rem)]">
           {{ datos.nombre }}
@@ -57,6 +96,56 @@ function ects(n: number) {
         </p>
       </div>
     </header>
+
+    <section v-if="pestanas.length" class="mb-12 md:mb-16" aria-label="Detalle de la asignatura">
+      <div
+        role="tablist"
+        aria-label="Contenido de la asignatura"
+        class="flex flex-wrap gap-2 border-b border-ink"
+        @keydown.right.prevent="moverPestana(1)"
+        @keydown.left.prevent="moverPestana(-1)"
+      >
+        <button
+          v-for="p in pestanas"
+          :id="`tab-${p.id}`"
+          :key="p.id"
+          type="button"
+          role="tab"
+          :aria-selected="pestanaActiva === p.id"
+          :aria-controls="`panel-${p.id}`"
+          :tabindex="pestanaActiva === p.id ? 0 : -1"
+          class="border border-b-0 border-ink px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt md:text-sm"
+          :class="pestanaActiva === p.id ? 'bg-ink text-paper' : 'hover:bg-ink/10'"
+          @click="pestanaActiva = p.id"
+        >
+          {{ p.texto }}
+        </button>
+      </div>
+
+      <div
+        v-for="p in pestanas"
+        v-show="pestanaActiva === p.id"
+        :id="`panel-${p.id}`"
+        :key="p.id"
+        role="tabpanel"
+        :aria-labelledby="`tab-${p.id}`"
+        tabindex="0"
+        class="pt-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cobalt"
+      >
+        <ul class="max-w-4xl">
+          <li
+            v-for="(t, i) in p.items"
+            :key="i"
+            class="grid grid-cols-[auto_1fr] gap-4 border-b border-ink/30 py-4 first:pt-0 last:border-b-0"
+          >
+            <span class="pt-1 font-mono text-xs uppercase tracking-widest text-ink/60">
+              {{ pad(i + 1) }}
+            </span>
+            <p class="font-serif text-lg leading-relaxed md:text-xl">{{ t }}</p>
+          </li>
+        </ul>
+      </div>
+    </section>
 
     <section aria-labelledby="trabajos-titulo">
       <h2 id="trabajos-titulo" class="mb-6 font-display text-3xl uppercase md:text-4xl">

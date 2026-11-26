@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Copy, Check, ArrowUpRight } from 'lucide-vue-next'
+import { RouterLink } from 'vue-router'
+import { Copy, Check, ArrowRight } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import AppContainer from '@/components/layout/AppContainer.vue'
 import { useCopyToClipboard } from '@/composables/useCopyToClipboard'
@@ -15,8 +16,8 @@ const { copiado, copiar } = useCopyToClipboard()
         id="contacto-titulo"
         class="font-display text-[clamp(2rem,3.5vw,4.5rem)] uppercase leading-none"
       >
-        ¿Trabajamos  
-        <span class="font-serif normal-case italic text-cobalt">  juntos?</span>
+        ¿Trabajamos
+        <span class="font-serif normal-case italic text-cobalt">juntos?</span>
       </h2>
 
       <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -39,11 +40,11 @@ const { copiado, copiar } = useCopyToClipboard()
 
         <Button
           as-child
-          class="h-auto rounded-none bg-cobalt px-4 py-2 font-mono text-s uppercase text-paper hover:bg-ink"
+          class="h-auto rounded-none bg-cobalt px-4 py-2 font-mono text-sm uppercase text-paper hover:bg-ink"
         >
-          <a :href="`mailto:${contacto.email}`">
-            Escríbeme <ArrowUpRight class="ml-2 h-3.5 w-3.5" />
-          </a>
+          <RouterLink to="/contacto">
+            Escríbeme <ArrowRight class="ml-2 h-3.5 w-3.5" />
+          </RouterLink>
         </Button>
       </div>
     </AppContainer>
