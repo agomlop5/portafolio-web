@@ -1,0 +1,17 @@
+import { computed } from 'vue'
+import { categorias } from '../data/categories'
+import { proyectos } from '../data/projects'
+
+export function useDestacados(maximo = 6) {
+  const destacados = computed(() =>
+    proyectos
+      .filter((p) => p.destacado)
+      .slice(0, maximo)
+      .map((p) => ({
+        ...p,
+        ramaNombre: categorias.find((c) => c.slug === p.categoria)?.nombre ?? '',
+      })),
+  )
+
+  return { destacados }
+}
